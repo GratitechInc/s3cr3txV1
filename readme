@@ -35,7 +35,7 @@ curl -X 'POST' \
 # 3.) The response body includes your API-Key and AuthCode.  Please copy and save this information safely    #
 # 4.) Use curl or the testS3cr3tx console app to generate encrypted versions of the credentials to protect   #
 # Curl (Windows) Example use ' (single quote) on linux instead: 											     #
-curl -X "GET" http://localhost:5039/Values --header "accept: text/plain" --header "Email: sales@gratitech.com" --header "APIToken: wrxyw7HDm3vCv+KAugoKwrjLhsOHw6Nlw5AmecO94oCedlnCocOELFnCrGtUIcK/fsOQy4bDuuKAnVUETxLigKFTw5nLhsKrUFItMxfDgMOmFcONwrc8a8O4X8OFw5Ruwqo94oCZ" --header "AuthCode: w4Rrxb7DnRPCqDUAw6ljK8O9w4Zw4oCcNMOawqnDlcKzJR8zbsOlw7zDlFFKP1DCrRImdFVz4oCUw6nDggRSw45/KcKjw7dgYRd8GcK0xb7DlHrigLrCvMOvN1ZdSzo=" --header "EorD: E" --header "Input: Secr3tU$3rnameOrS3cr3tP%40$sw0rd" > output.text
+curl -X "GET" https://localhost:5039/Values --header "accept: text/plain" --header "Email: sales@gratitech.com" --header "APIToken: wrxyw7HDm3vCv+KAugoKwrjLhsOHw6Nlw5AmecO94oCedlnCocOELFnCrGtUIcK/fsOQy4bDuuKAnVUETxLigKFTw5nLhsKrUFItMxfDgMOmFcONwrc8a8O4X8OFw5Ruwqo94oCZ" --header "AuthCode: w4Rrxb7DnRPCqDUAw6ljK8O9w4Zw4oCcNMOawqnDlcKzJR8zbsOlw7zDlFFKP1DCrRImdFVz4oCUw6nDggRSw45/KcKjw7dgYRd8GcK0xb7DlHrigLrCvMOvN1ZdSzo=" --header "EorD: E" --header "Input: Secr3tU$3rnameOrS3cr3tP%40$sw0rd" > output.text
 # 5.) Store the encrypted versions of the credentials instead of the clear text versions using a function to #
 #     call the s3cr3tx get method to decrypt the credentials in your code.  The get method requires 5 headers#
 #    a.) the required headers are 1.) Email 2.) APIToken 3.) AuthCode 4.) EorD 5.) Input                     #
