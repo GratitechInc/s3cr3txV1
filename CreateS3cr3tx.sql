@@ -359,6 +359,58 @@ BEGIN
 	where mEmail = @email --and mAPIKey = @mAPIKey and mAuthorization = @mAuthorization
 END
 GO
+/****** Object: StoredProcedure [dbo].[insertAuth]  *********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetUserCount]
+(@distinct bit = 1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	if @distinct = 1
+	begin
+	select count(distinct(mEmail)) from dbo.m; 
+	end
+	else
+	begin
+	select count(mEmail) from dbo.m;
+	end
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/****** Stored PROCEDURE [dbo].[GetLogCount] *******/
+
+CREATE PROCEDURE [dbo].[GetLogCount]
+(@distinct bit = 1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	if @distinct = 1
+	begin
+	select count(distinct(LogMessage)) from dbo.tblLog; 
+	end
+	else
+	begin
+	select count(*) from dbo.tblLog;
+	end
+END
+GO
+
 /****** Object:  StoredProcedure [dbo].[insertAuth]    Script Date: 7/13/2021 1:34:58 PM ******/
 SET ANSI_NULLS ON
 GO
