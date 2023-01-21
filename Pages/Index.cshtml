@@ -1,0 +1,72 @@
+﻿@page
+@model  s3cr3tx.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "s3cretx Home page";
+}
+
+<div class="text-center">
+    <center> <h1 class="display-4">Welcome to the s3cr3tx test page</h1></center>
+    <form asp-page-handler="view" formaction="post">
+        <center>
+            <table>
+                <tr>
+                    <td align="right">
+                        <label id="lblEmail">Email: </label>
+                    </td>
+                    <td>
+                        <input id="txtEmail" asp-for="S3Cr3Tx.Email" maxlength="256" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label id="lblToken">API Key: </label>
+                    </td>
+                    <td>
+                        <input id="txtToken" maxlength="256" asp-for="S3Cr3Tx.Token" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label id="lblAuth">Auth Code: </label>
+                    </td>
+                    <td>
+                        <input id="txtAuthCode" maxlength="256" asp-for="S3Cr3Tx.AuthCode" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label id="lblDirection">Enter e to encrypt or d to decrypt: </label>
+                    </td>
+                    <td>
+                        <input id="txtDirection" asp-for="S3Cr3Tx.EoD" maxlength="256" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label id="lblInput">Input: </label>
+                    </td>
+                    <td>
+                        <textarea id="txtInput" asp-for="S3Cr3Tx.Input"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label id="lblInput">&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                    <label id="lblOutput">Output: </label>
+                    </td>
+                    <td rowspan="10"><textarea id="lblOutput" asp-for="S3Cr3Tx.Output"></textarea></td>
+                </tr>
+            </table>
+        </center>
+        <br />
+    </form>
+</div>

@@ -1,0 +1,6 @@
+curl -X 'POST' \
+  'https://localhost:7191/Values?jsonString=%7B%22name%22%3A%22pk%40gratitech.com%22%2C%22pd%22%3A%221%22%2C%22pd2%22%3A%221%22%7D' \
+  -H 'accept: text/plain' \
+  -d ''
+
+https://localhost:7191/Values?jsonString=%7B%22name%22%3A%22pk%40gratitech.com%22%2C%22pd%22%3A%221%22%2C%22pd2%22%3A%221%22%7D
