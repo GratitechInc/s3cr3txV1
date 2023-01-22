@@ -17,6 +17,7 @@ using System.Text.Json;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Newtonsoft.Json;
 
 namespace s3cr3tx.Controllers
 {
@@ -38,8 +39,14 @@ namespace s3cr3tx.Controllers
         {
             try
             {
+
                 //foreach (System.Collections.Generic.KeyValuePair<string,Microsoft.Extensions.Primitives.StringValues> header in Request.Headers)
                 //{
+                string strEmail = @"";
+                if (Request.Headers.TryGetValue(@"Email", out Microsoft.Extensions.Primitives.StringValues svEmail))
+                {
+                    strEmail = svEmail[0];
+                }
                 string strAuth = @"";
                 if (Request.Headers.TryGetValue(@"AuthCode", out Microsoft.Extensions.Primitives.StringValues svAuth))
                 {
@@ -50,42 +57,51 @@ namespace s3cr3tx.Controllers
                 {
                     strToken = svToken[0];
                 }
-                string strEmail = @"";
-                if (Request.Headers.TryGetValue(@"Email", out Microsoft.Extensions.Primitives.StringValues svEmail))
+                if (strAuth != strToken)
                 {
-                    strEmail = svEmail[0];
-                }
-                string strInput = @"";
-                if (Request.Headers.TryGetValue(@"Input", out Microsoft.Extensions.Primitives.StringValues svInput))
-                {
-                    strInput = svInput[0];
-                }
-                string strEoD = @"";
-                if (Request.Headers.TryGetValue(@"EorD", out Microsoft.Extensions.Primitives.StringValues svEorD))
-                {
-                    strEoD = svEorD[0];
-                }
-                bool blnEnc = false;
-                if (strEoD.ToString().ToUpper().StartsWith(@"E"))
-                {
-                    blnEnc = true;
-                }
-                string strD = @"";
-                if (Request.Headers.TryGetValue(@"Def", out Microsoft.Extensions.Primitives.StringValues svD))
-                {
-                    strD = svD[0];
-                }
-                bool blnD = false;
-                if (strD.ToString().ToUpper().StartsWith(@"T"))
-                {
-                    blnD = true;
-                }
+                    
+                    string strInput = @"";
+                    if (Request.Headers.TryGetValue(@"Input", out Microsoft.Extensions.Primitives.StringValues svInput))
+                    {
+                        strInput = svInput[0];
+                    }
+                    string strEoD = @"";
+                    if (Request.Headers.TryGetValue(@"EorD", out Microsoft.Extensions.Primitives.StringValues svEorD))
+                    {
+                        strEoD = svEorD[0];
+                    }
+                    bool blnEnc = false;
+                    if (strEoD.ToString().ToUpper().StartsWith(@"E"))
+                    {
+                        blnEnc = true;
+                    }
+                    string strD = @"";
+                    if (Request.Headers.TryGetValue(@"Def", out Microsoft.Extensions.Primitives.StringValues svD))
+                    {
+                        strD = svD[0];
+                    }
+                    bool blnD = false;
+                    if (strD.ToString().ToUpper().StartsWith(@"T"))
+                    {
+                        blnD = true;
+                    }
 
 
-                string strResult = @"";
-                strResult = GetResult(strAuth, strToken, strEmail, strInput, blnEnc, blnD);
-                LogIt(strResult, @"Result-from ValuesController Get From: " + strEmail + @" using input: " + strInput);
-                return strResult;
+                    string strResult = @"";
+                    strResult = GetResult(strAuth, strToken, strEmail, strInput, blnEnc, blnD);
+                    LogIt(strResult, @"Result-from ValuesController Get From: " + strEmail + @" using input: " + strInput);
+                    return strResult;
+                }
+                else
+                {
+                    NewK newK = new NewK();
+                    newK.email = strEmail;
+                    newK.pd = strAuth;
+                    newK.pd2 = strToken;
+                    string strNK = System.Text.Json.JsonSerializer.Serialize<NewK>(newK);
+                    string strResult = Post(newK);
+                    return strResult;
+                }
             }
             catch (Exception ex)
             {
@@ -116,11 +132,11 @@ namespace s3cr3tx.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [Produces("text/plain")]
-        public String Post([FromBody] NewK newK)//string jsonString)
+        public String Post([FromBody] NewK newAcct)//string jsonString)
         {
 
             try {
-                NewK nk = newK;//JsonSerializer.Deserialize<NewK>(jsonString);
+                NewK nk = newAcct;//System.Text.Json.JsonSerializer.Deserialize<NewK>(newAcct);
                 string strResult = @"";
             string strUserEmail = nk.email;
             //string strUserEmail = data["name"];

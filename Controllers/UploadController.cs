@@ -15,69 +15,69 @@ namespace s3cr3txMVC.Controllers
     [ApiController]
     public class UploadController : ControllerBase
     {
-        [HttpPost, DisableRequestSizeLimit]
-        public IActionResult Upload()
-        {
-            try
-            {
-                var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources", "ClientCerts");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                string strGUID = Guid.NewGuid().ToString();
-                string strAuth = @"";
-                if (Request.Headers.TryGetValue(@"AuthCode", out Microsoft.Extensions.Primitives.StringValues svAuth))
-                {
-                    strAuth = svAuth[0];
-                }
-                string strToken = @"";
-                if (Request.Headers.TryGetValue(@"APIToken", out Microsoft.Extensions.Primitives.StringValues svToken))
-                {
-                    strToken = svToken[0];
-                }
-                string strEmail = @"";
-                if (Request.Headers.TryGetValue(@"Email", out Microsoft.Extensions.Primitives.StringValues svEmail))
-                {
-                    strEmail = svEmail[0];
-                }
-                string strUpType = @"";
-                if (Request.Headers.TryGetValue(@"UpType", out Microsoft.Extensions.Primitives.StringValues svInput))
-                {
-                    strUpType = svInput[0];
-                }
-                if (isAuthorized(strAuth, strToken, strEmail))
-                {
-                    if (file.Length > 0)
-                    {
-                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Trim('.').Trim('.').Trim('/').Trim('\\').Trim('.').Trim('.').Trim('\\').Trim('/');
-                        Match m = Regex.Match(Path.GetFileNameWithoutExtension(fileName), @"\w*");
-                        if (!Path.GetExtension(fileName).ToLower().Equals(@".config"))
-                        {
-                            var fullPath = Path.Combine(pathToSave, strGUID + @"_" + m.Value + Path.GetExtension(fileName));
-                            var dbPath = Path.Combine(folderName, strGUID + @"_" + m.Value + Path.GetExtension(fileName));
+        //[HttpPost, DisableRequestSizeLimit]
+        //public IActionResult Upload()
+        //{
+        //    try
+        //    {
+        //        var file = Request.Form.Files[0];
+        //        var folderName = Path.Combine("Resources", "ClientCerts");
+        //        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+        //        string strGUID = Guid.NewGuid().ToString();
+        //        string strAuth = @"";
+        //        if (Request.Headers.TryGetValue(@"AuthCode", out Microsoft.Extensions.Primitives.StringValues svAuth))
+        //        {
+        //            strAuth = svAuth[0];
+        //        }
+        //        string strToken = @"";
+        //        if (Request.Headers.TryGetValue(@"APIToken", out Microsoft.Extensions.Primitives.StringValues svToken))
+        //        {
+        //            strToken = svToken[0];
+        //        }
+        //        string strEmail = @"";
+        //        if (Request.Headers.TryGetValue(@"Email", out Microsoft.Extensions.Primitives.StringValues svEmail))
+        //        {
+        //            strEmail = svEmail[0];
+        //        }
+        //        string strUpType = @"";
+        //        if (Request.Headers.TryGetValue(@"UpType", out Microsoft.Extensions.Primitives.StringValues svInput))
+        //        {
+        //            strUpType = svInput[0];
+        //        }
+        //        if (isAuthorized(strAuth, strToken, strEmail))
+        //        {
+        //            if (file.Length > 0)
+        //            {
+        //                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Trim('.').Trim('.').Trim('/').Trim('\\').Trim('.').Trim('.').Trim('\\').Trim('/');
+        //                Match m = Regex.Match(Path.GetFileNameWithoutExtension(fileName), @"\w*");
+        //                if (!Path.GetExtension(fileName).ToLower().Equals(@".config"))
+        //                {
+        //                    var fullPath = Path.Combine(pathToSave, strGUID + @"_" + m.Value + Path.GetExtension(fileName));
+        //                    var dbPath = Path.Combine(folderName, strGUID + @"_" + m.Value + Path.GetExtension(fileName));
 
-                            using (var stream = new FileStream(fullPath, FileMode.Create))
-                            {
-                                file.CopyTo(stream);
-                            }
-                            StoreFileLocation(strEmail, fileName, fullPath, dbPath, @"ClientCertificate:" + strGUID, @"Client Certificate");
-                            string Success = @"File Uploaded Successfully";
-                            return Ok(new { Success });
-                        }
-                        return BadRequest();
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                }
-                return BadRequest();
-            }
-            catch (Exception ex)
-            {
-                LogIt(ex.GetBaseException().ToString(), @"s3cr3tx.UploadController.Upload");
-                return StatusCode(500, $"Internal server error: {ex}");
-            }
-        }
+        //                    using (var stream = new FileStream(fullPath, FileMode.Create))
+        //                    {
+        //                        file.CopyTo(stream);
+        //                    }
+        //                    StoreFileLocation(strEmail, fileName, fullPath, dbPath, @"ClientCertificate:" + strGUID, @"Client Certificate");
+        //                    string Success = @"File Uploaded Successfully";
+        //                    return Ok(new { Success });
+        //                }
+        //                return BadRequest();
+        //            }
+        //            else
+        //            {
+        //                return BadRequest();
+        //            }
+        //        }
+        //        return BadRequest();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogIt(ex.GetBaseException().ToString(), @"s3cr3tx.UploadController.Upload");
+        //        return StatusCode(500, $"Internal server error: {ex}");
+        //    }
+        //}
         private static void StoreFileLocation(string strOwner, string strOrigName, string strDirPath, string strDbPath, string strVirtualPath, string strDescription)
         { //@"s3cr3tx.api.ValuesController"
             string strConnection = @"Data Source=.;Integrated Security=SSPI;Initial Catalog=s3cr3tx";

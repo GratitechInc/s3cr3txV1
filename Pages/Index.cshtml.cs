@@ -56,7 +56,7 @@ namespace s3cr3tx.Pages
 
         public class NewK
         {
-            public string name { get; set; }
+            public string email { get; set; }
             public string pd { get; set; }
             public string pd2 { get; set; }
         }
@@ -77,6 +77,8 @@ namespace s3cr3tx.Pages
                                 //wc.Credentials.GetCredential();
                                 wc.BaseAddress = @"https://localhost:7192/Values";
                                 WebHeaderCollection webHeader = new WebHeaderCollection();
+                                //webHeader.Add(@"content-type:text/plain; charset=utf-8");
+                                webHeader.Add(@"accept:text/plain; charset=utf-8");
                                 webHeader.Add(@"Email:" + vEmail[0]);
                                 webHeader.Add(@"AuthCode:" + vCode[0]);
                                 webHeader.Add(@"APIToken:" + vToken[0]);
@@ -88,12 +90,14 @@ namespace s3cr3tx.Pages
                                 string result = @"";
                                 if (vCode[0] == vToken[0])
                                 {
+                                    webHeader.Add(@"content-type:application/json");
                                     NewK nk = new NewK();
-                                    nk.name = vEmail[0];
+                                    nk.email = vEmail[0];
                                     nk.pd = vToken[0];
                                     nk.pd2 = vCode[0];
                                     string strNk = JsonSerializer.Serialize<NewK>(nk);
-                                    string strUTF8 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(0), System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0).GetBytes(strNk)));
+                                    //string strUTF8 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(0), System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0).GetBytes(strNk)));
+                                    //wc.upload
                                     result = wc.UploadString(@"https://localhost:7192/Values",strNk);
                                 }
                                 else
