@@ -109,11 +109,11 @@ namespace s3cr3tx.Controllers
         ///     }
         /// </remarks>
         /// <returns>The new s3cr3tx API Key and Auth Code for the submitted email address</returns>
-        /// <response code="201">Returns the newly created API Key and AuthCode</response>
+        /// <response code="200">Returns the newly created API Key and AuthCode</response>
         /// <response code="400">If the item is null</response>
         // POST: /Values
         [HttpPost(Name = "PostS3cr3tx")]
-        [ProducesResponseType(201)]
+        [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [Produces("text/plain")]
         public String Post([FromBody] NewK newK)//string jsonString)
