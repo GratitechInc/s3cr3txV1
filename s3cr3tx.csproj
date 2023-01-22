@@ -10,6 +10,8 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net7.0\s3cr3tx.xml</DocumentationFile>
+    <NoWarn>1701;1702;IL2121;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Controllers\WeatherForecastController.cs" />
@@ -48,10 +50,14 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="wwwroot\swagger\" />
+    <Folder Include="wwwroot\swagger\ui\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\privacy.cshtml" />
     <Content Remove="Views\Shared\_Layout.cshtml" />
     <Content Remove="JSONdb.json" />
+    <Content Remove="wwwroot\swagger\" />
+    <Content Remove="wwwroot\swagger\ui\" />
   </ItemGroup>
 </Project>

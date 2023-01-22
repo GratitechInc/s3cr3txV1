@@ -14,6 +14,9 @@ using s3cr3tx.Controllers;
 using System.Collections.Specialized;
 using System.Reflection.Metadata;
 using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace s3cr3tx.Controllers
 {
@@ -21,10 +24,17 @@ namespace s3cr3tx.Controllers
     [Route("[controller]")]
     public class ValuesController : ControllerBase
     {
-   
 
+        /// <summary>
+        /// Gets the Encrypted or Decrypted Text.
+        /// </summary>
+        /// <remarks>
+        /// curl -X "GET" https://localhost:7192/Values --header "accept: text/plain" --header "Email: sales@gratitech.com" --header "APIToken: wrxyw7HDm3vCv+KAugoKwrjLhsOHw6Nlw5AmecO94oCedlnCocOELFnCrGtUIcK/fsOQy4bDuuKAnVUETxLigKFTw5nLhsKrUFItMxfDgMOmFcONwrc8a8O4X8OFw5Ruwqo94oCZ" --header "AuthCode: w4Rrxb7DnRPCqDUAw6ljK8O9w4Zw4oCcNMOawqnDlcKzJR8zbsOlw7zDlFFKP1DCrRImdFVz4oCUw6nDggRSw45/KcKjw7dgYRd8GcK0xb7DlHrigLrCvMOvN1ZdSzo=" --header "EorD: E" --header "Input: Secr3tUs3rnameOrS3cr3tP@Ssw0rd" > output.text
+        /// </remarks>
+        /// <returns>The Encrypted or Decrypted Text.</returns>
         [HttpGet(Name = "GetS3cr3tx")]
-        public String Get()
+        [Produces("text/plain")]
+        public String Get([FromHeader(Name = "Email")] string Email, [FromHeader(Name = "APIToken")] string APIKey, [FromHeader(Name = "AuthCode")] string Acode, [FromHeader(Name = "EorD")] string EorD, [FromHeader(Name = "Input")] string Input)
         {
             try
             {
@@ -86,15 +96,33 @@ namespace s3cr3tx.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Creates a new s3cr3tx API account.</summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST /Values
+        ///     {        
+        ///       "email": "sales@gratitech.com",
+        ///       "pd": "abc123",
+        ///       "pd2": "abc123"        
+        ///     }
+        /// </remarks>
+        /// <returns>The new s3cr3tx API Key and Auth Code for the submitted email address</returns>
+        /// <response code="201">Returns the newly created API Key and AuthCode</response>
+        /// <response code="400">If the item is null</response>
+        // POST: /Values
         [HttpPost(Name = "PostS3cr3tx")]
-        public String Post(string jsonString)
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [Produces("text/plain")]
+        public String Post([FromBody] NewK newK)//string jsonString)
         {
 
-            try { 
-               NewK nk = JsonSerializer.Deserialize<NewK>(jsonString);
+            try {
+                NewK nk = newK;//JsonSerializer.Deserialize<NewK>(jsonString);
                 string strResult = @"";
-            string strUserEmail = nk.name;
+            string strUserEmail = nk.email;
             //string strUserEmail = data["name"];
             //string strPw = data["pwd"];
             string strPw = nk.pd;
@@ -765,8 +793,11 @@ namespace s3cr3tx.Controllers
     
     public class NewK
     {
-        public string name { get; set; }
+        [Required]
+        public string email { get; set; }
+        [Required]
         public string pd { get; set; }
+        [Required]
         public string pd2 { get; set; }
     }
     class ebundle
@@ -816,5 +847,66 @@ namespace s3cr3tx.Controllers
                 }
             }
         }
+        //public class CustomHeaderSwaggerAttribute : IOperationFilter
+        //{
+
+        //    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        //    {
+        //        if (operation.Parameters == null)
+        //            operation.Parameters = new List<OpenApiParameter>();
+
+        //        operation.Parameters.Add(new OpenApiParameter
+        //        {
+        //            Name = "Email",
+        //            In = ParameterLocation.Header,
+        //            Required = true,
+        //            Schema = new OpenApiSchema
+        //            {
+        //                Type = "string"
+        //            }
+        //        });
+        //        operation.Parameters.Add(new OpenApiParameter
+        //        {
+        //            Name = "APIToken",
+        //            In = ParameterLocation.Header,
+        //            Required = true,
+        //            Schema = new OpenApiSchema
+        //            {
+        //                Type = "string"
+        //            }
+        //        });
+        //        operation.Parameters.Add(new OpenApiParameter
+        //        {
+        //            Name = "AuthCode",
+        //            In = ParameterLocation.Header,
+        //            Required = true,
+        //            Schema = new OpenApiSchema
+        //            {
+        //                Type = "string"
+        //            }
+        //        });
+        //        operation.Parameters.Add(new OpenApiParameter
+        //        {
+        //            Name = "EorD",
+        //            In = ParameterLocation.Header,
+        //            Required = true,
+        //            Schema = new OpenApiSchema
+        //            {
+        //                Type = "string"
+        //            }
+        //        });
+        //        operation.Parameters.Add(new OpenApiParameter
+        //        {
+        //            Name = "Input",
+        //            In = ParameterLocation.Header,
+        //            Required = true,
+        //            Schema = new OpenApiSchema
+        //            {
+        //                Type = "string"
+        //            }
+        //        });
+        //    }
+
+        //}
     }
 }
