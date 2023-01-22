@@ -552,6 +552,15 @@ BEGIN
 	where mEmail = @mEmail and mAPIKey = @mAPIKey and mAuthorization = @mAuthorization
 END
 GO
+Grant execute on [dbo].[checkAuth] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[EorD] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[getBundle] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[insertAuth] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[insertFile] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[insertLog] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[InsertM] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[isValidEmail] to [localhost\s3cr3txUser];
+Grant execute on [dbo].[USP_GetBundle_M] to [localhost\s3cr3txUser];
 USE [master]
 GO
 /*
