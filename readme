@@ -15,11 +15,11 @@
 # 2.) SQL Server 2019 or above. It will work with SQL Server Express, Azure Sql Edge, and all other versions of SQL Server...
 #     We recommend using it's own SQL Server & install on same server as the API   #
 # 3.) Create a user on the host with SQL Server with the principle of least privilege                  	     #
-# 4.) Update CreateS3cr3tx.sql (T-SQL Script) with the user name from step 3.) above where s3cr3tus3r exists #
-# 5.) Update Line 12 & 14 of CreateS3cr3tx.sql (T-SQL Script) with the path for your DB files   	     #
+# 4.) Update CreateS3cr3txLite.sql (T-SQL Script) with the user name from step 3.) above where s3cr3tus3r exists #
+# 5.) Update Line 12 & 14 of CreateS3cr3txLite.sql (T-SQL Script) with the path for your DB files   	     #
 ##############################################################################################################
 # Installation steps:											     #
-# 1.) Run the script CreateS3cr3tx.sql to create the Database                                                #
+# 1.) Run the script CreateS3cr3txLite.sql to create the Database                                                #
 # 2.) Update connection strings for your environment & Build and Deploy the C# .NET 7.0 API project	     #
 # 3.) Run the s3cr3tx api under the context of the user created in step 3.) of Pre-requisites above	     #
 # 4.) Secure your s3cr3tx api with a strong TLS 1.2, 1.3 or stronger certificate and only allow HTTPS://     # 							  					     	     #
@@ -27,14 +27,14 @@
 # Usage instructions											     #
 # 1.) Visit http://localhost:5039/swagger/index.html on the s3cr3tx_API server                	             #
 # 2.) submit your email address and two identical phrases in a json text input in the jsonString query string#
-#	a.) jsonString format is: {"name":"sales@gratitech.com","pd":"abc123*$","pd2":"abc123*$"}
+#	a.) jsonString format is: {"name":"sales@gratitech.com","pd":"abc123","pd2":"abc123"}
 or Submit a curl to the deployment url like below:
 curl -X 'POST' \
   'https://localhost:5039/Values?jsonString=%7B%22name%22%3A%22sales%40gratitech.com%22%2C%22pd%22%3A%22abc%22%2C%22pd2%22%3A%22abc%22%7D' \
   -H 'accept: text/plain' \
   -d ''	     #
 # 3.) The response body includes your API-Key and AuthCode.  Please copy and save this information safely    #
-# 4.) Use curl or the testS3cr3tx console app to generate encrypted versions of the credentials to protect   #
+# 4.) Use curl or the local version of the apps homepage to generate encrypted versions of the credentials to protect   #
 # Curl (Windows) Example use ' (single quote) on linux instead: 											     #
 curl -X "GET" https://localhost:5039/Values --header "accept: text/plain" --header "Email: sales@gratitech.com" --header "APIToken: wrxyw7HDm3vCv+KAugoKwrjLhsOHw6Nlw5AmecO94oCedlnCocOELFnCrGtUIcK/fsOQy4bDuuKAnVUETxLigKFTw5nLhsKrUFItMxfDgMOmFcONwrc8a8O4X8OFw5Ruwqo94oCZ" --header "AuthCode: w4Rrxb7DnRPCqDUAw6ljK8O9w4Zw4oCcNMOawqnDlcKzJR8zbsOlw7zDlFFKP1DCrRImdFVz4oCUw6nDggRSw45/KcKjw7dgYRd8GcK0xb7DlHrigLrCvMOvN1ZdSzo=" --header "EorD: E" --header "Input: Secr3tUs3rnameOrS3cr3tP@Ssw0rd" > output.text
 # 5.) Store the encrypted versions of the credentials instead of the clear text versions using a function to #
