@@ -22,7 +22,7 @@
 # 1.) Run the script CreateS3cr3txLite.sql to create the Database                                                #
 # 2.) Update connection strings for your environment & Build and Deploy the C# .NET 7.0 API project	     #
 # 3.) Build/run/deploy the API using your favorite C# IDE (Visual Studio Community or Visual Studio Code will work!)
-  4.) Run the s3cr3tx api under the context of the user created in step 3.) of Pre-requisites above	     #
+# 4.) Run the s3cr3tx api under the context of the user created in step 3.) of Pre-requisites above	     #
 # 5.) Secure your s3cr3tx api with a strong TLS 1.2, 1.3 or stronger certificate and only allow HTTPS://     # 							  					     	     #
 ##############################################################################################################
 # Usage instructions											     #
