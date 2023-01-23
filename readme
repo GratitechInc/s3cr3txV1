@@ -12,7 +12,8 @@
 ##############################################################################################################
 # Pre-requisites:                                                                                            #
 # 1.) .NET 7.0                                                                                               #
-# 2.) SQL Server 2019 or above. We recommend using it's own SQL Server & install on same server as the API   #
+# 2.) SQL Server 2019 or above. It will work with SQL Server Express, Azure Sql Edge, and all other versions of SQL Server...
+#     We recommend using it's own SQL Server & install on same server as the API   #
 # 3.) Create a user on the host with SQL Server with the principle of least privilege                  	     #
 # 4.) Update CreateS3cr3tx.sql (T-SQL Script) with the user name from step 3.) above where s3cr3tus3r exists #
 # 5.) Update Line 12 & 14 of CreateS3cr3tx.sql (T-SQL Script) with the path for your DB files   	     #
