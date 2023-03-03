@@ -235,7 +235,7 @@ namespace s3cr3tx.Controllers
             }
             catch (RegexMatchTimeoutException e)
             {
-                var con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                var con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -250,7 +250,7 @@ namespace s3cr3tx.Controllers
             }
             catch (ArgumentException e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -272,7 +272,7 @@ namespace s3cr3tx.Controllers
             }
             catch (RegexMatchTimeoutException e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -291,7 +291,7 @@ namespace s3cr3tx.Controllers
             try
             {
                 string strResult = @"";
-                string strConnection = @"Data Source=.;User=sa;Password=Iw1llAlwaysL0v3You123;Initial Catalog=s3cr3tx";
+                string strConnection = @"Data Source=.;Integrated Security=SSPI;Initial Catalog=s3cr3tx";
                 SqlConnection sql = new SqlConnection(strConnection);
                 SqlCommand command = new SqlCommand();
                 command.CommandText = @"dbo.EorD";
@@ -395,7 +395,7 @@ namespace s3cr3tx.Controllers
 
         private static void LogIt(string strMessage, string strSource)
         { //@"s3cr3tx.api.ValuesController"
-            string strConnection = @"Data Source=.;User=sa;Password=Iw1llAlwaysL0v3You123;Initial Catalog=s3cr3tx";
+            string strConnection = @"Data Source=.;Integrated Security=SSPI;Initial Catalog=s3cr3tx";
             SqlConnection sql = new SqlConnection(strConnection);
             SqlCommand command = new SqlCommand();
             command.CommandText = @"dbo.insertLog";
@@ -442,7 +442,7 @@ namespace s3cr3tx.Controllers
             {
                 bool result = false;
                 //SQLConnection, Command, ExecuteNonQuery
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.InsertM";
@@ -476,7 +476,7 @@ namespace s3cr3tx.Controllers
             {
                 //Console.WriteLine(ex.GetBaseException().ToString());
 
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -500,7 +500,7 @@ namespace s3cr3tx.Controllers
                     string strGuid = Guid.NewGuid().ToString();
                     string strCreated = @"ADMIN";
                     bool IsValid = true;
-                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                     SqlCommand command = new SqlCommand();
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = @"dbo.InsertAuth";
@@ -527,7 +527,7 @@ namespace s3cr3tx.Controllers
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.GetBaseException().ToString());
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -551,7 +551,7 @@ namespace s3cr3tx.Controllers
                     string strGuid = Guid.NewGuid().ToString();
                     string strCreated = @"ADMIN";
                     bool IsValid = true;
-                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                     SqlCommand command = new SqlCommand();
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = @"dbo.InsertAuth";
@@ -578,7 +578,7 @@ namespace s3cr3tx.Controllers
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.GetBaseException().ToString());
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -618,7 +618,7 @@ namespace s3cr3tx.Controllers
             }
             catch (RegexMatchTimeoutException e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -633,7 +633,7 @@ namespace s3cr3tx.Controllers
             }
             catch (ArgumentException e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.InsertM";
@@ -655,7 +655,7 @@ namespace s3cr3tx.Controllers
             }
             catch (RegexMatchTimeoutException e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -676,7 +676,7 @@ namespace s3cr3tx.Controllers
                 Bundle bundleCurrent = new Bundle();
                 if (IsValidEmail(Email))
                 {
-                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                    SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                     SqlCommand command = new SqlCommand();
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = @"dbo.USP_GetBundle_M";
@@ -708,7 +708,7 @@ namespace s3cr3tx.Controllers
             {
                 Bundle bunEmpty = new Bundle();
                 //Console.WriteLine(@"Error: " + ex.GetBaseException().ToString());
-                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123");
+                SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI");
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = @"dbo.insertLog";
@@ -785,7 +785,7 @@ namespace s3cr3tx.Controllers
             }
             catch (Exception ex)
             {
-                using (SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123"))
+                using (SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI"))
                 {
 
                     using (SqlCommand command = new SqlCommand())
@@ -838,7 +838,7 @@ namespace s3cr3tx.Controllers
 
         public static ebundle GetEbundle(string email)
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;User=sa;Password=Iw1llAlwaysL0v3You123"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=s3cr3tx;Integrated Security=SSPI"))
             {
                 //string strConnection = "Server=localhost;Database=S;User Id=sa;Password=Sunsh1n3-20p;";
                 //SqlConnection con = new SqlConnection(strConnection);
